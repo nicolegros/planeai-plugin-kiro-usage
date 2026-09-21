@@ -1,4 +1,5 @@
 const POLL_INTERVAL_MS = 10_000;
+const KIRO_ICON_SVG = "__KIRO_ICON_SVG__";
 
 function formatNumber(value) {
   return new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 }).format(value);
@@ -50,14 +51,18 @@ function mountTitlebar(root, context) {
   root.innerHTML = `
     <style>
       :host { display: block; height: 100%; }
-      button { width: 100%; height: 100%; min-height: 0; padding: 0 4px; border: 0; border-radius: 4px; background: transparent; color: var(--planeai-text-muted); font-size: 11px; white-space: nowrap; }
+      html, body { width: 100%; height: 100%; min-height: 0; overflow: hidden; }
+      button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; height: 100%; min-height: 0; padding: 0 4px; overflow: hidden; border: 0; border-radius: 4px; background: transparent; color: var(--planeai-text-muted); font-size: 11px; line-height: 1; white-space: nowrap; }
+      .kiro-icon { display: block; width: 16px; height: 16px; max-width: 16px; max-height: 16px; flex: none; }
+      .usage { font-variant-numeric: tabular-nums; }
       button:hover, button:focus-visible { background: var(--planeai-accent-subtle); color: var(--planeai-text); outline: none; }
-      button.warning { color: var(--planeai-warning); }
-      button.danger { color: var(--planeai-danger); }
-      button.muted { color: var(--planeai-text-subtle); }
+      button.warning .usage { color: var(--planeai-warning); }
+      button.danger .usage { color: var(--planeai-danger); }
+      button.muted .usage { color: var(--planeai-text-subtle); }
     </style>
-    <button type="button" aria-label="Open Kiro usage details">Kiro —</button>`;
+    <button type="button" aria-label="Open Kiro usage details">${KIRO_ICON_SVG}<span class="usage" data-usage>—</span></button>`;
   const button = root.querySelector("button");
+  const usageLabel = root.querySelector("[data-usage]");
   let disposed = false;
 
   const render = async () => {
@@ -65,12 +70,12 @@ function mountTitlebar(root, context) {
       const state = await context.host.call("usage.status");
       if (disposed) return;
       const usage = state.usage;
-      button.textContent = usage ? `Kiro ${formatNumber(usage.covered_percent)}%` : "Kiro —";
+      usageLabel.textContent = usage ? `${formatNumber(usage.covered_percent)}%` : "—";
       button.className = state.stale ? "muted" : usageTone(usage);
       button.title = state.stale ? `Stale: ${displayMessage(state)}` : usage ? `${formatNumber(usage.covered_percent)}% covered by plan` : displayMessage(state);
     } catch (error) {
       if (!disposed) {
-        button.textContent = "Kiro —";
+        usageLabel.textContent = "—";
         button.className = "muted";
         button.title = String(error);
       }
