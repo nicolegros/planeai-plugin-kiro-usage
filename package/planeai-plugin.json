@@ -1,0 +1,30 @@
+{
+  "schema": "planeai.plugin.v1",
+  "id": "kiro-usage",
+  "name": "Kiro Usage",
+  "version": "0.1.1",
+  "host_api_version": "planeai.plugin-host.v1",
+  "source_kind": "local",
+  "backend_entrypoints": {
+    "macos-arm64": "bin/macos-arm64/planeai-plugin-kiro-usage"
+  },
+  "background_service": {
+    "method": "usage.refresh",
+    "interval_setting": "refresh_interval_ms",
+    "default_interval_ms": 300000
+  },
+  "ui_contributions": [
+    {
+      "id": "titlebar",
+      "label": "Kiro usage",
+      "placement": "titlebar",
+      "entrypoint": "ui/entry.js"
+    },
+    {
+      "id": "details",
+      "label": "Kiro Usage",
+      "placement": "session.panel",
+      "entrypoint": "ui/entry.js"
+    }
+  ]
+}
