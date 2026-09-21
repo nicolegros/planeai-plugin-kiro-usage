@@ -2,7 +2,7 @@
 
 A manually installed PlaneAI local plugin that displays the Kiro CLI’s current estimated usage. Version 1 supports macOS on Apple Silicon.
 
-It runs `kiro-cli chat --no-interactive /usage` locally on startup and every five minutes. The titlebar shows the official Kiro icon and the percentage of credits **covered by the plan**, opens a details modal for the active session, and provides a manual refresh. No account data is persisted. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for the bundled Kiro icon notice.
+It runs `kiro-cli chat --no-interactive /usage` locally on startup and every five minutes. The titlebar shows the bundled purple Kiro ghost icon and the percentage of credits **covered by the plan**, opens a details modal for the active session, and provides a manual refresh. No account data is persisted. See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for the bundled Kiro icon notice.
 
 ## Install
 
