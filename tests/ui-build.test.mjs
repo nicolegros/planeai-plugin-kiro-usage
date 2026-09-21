@@ -11,5 +11,7 @@ test("build inlines the bundled Kiro ghost icon as decorative titlebar markup", 
   assert.match(source, /const KIRO_ICON_SVG = "__KIRO_ICON_SVG__";/);
   assert.doesNotMatch(built, /__KIRO_ICON_SVG__/);
   assert.match(built, /class=\\"kiro-icon\\" aria-hidden=\\"true\\" focusable=\\"false\\"/);
+  assert.match(built, /html, body \{ width: 100%; height: 100%; min-height: 0; overflow: hidden; \}/);
+  assert.match(built, /\.kiro-icon \{ display: block; width: 16px; height: 16px; max-width: 16px; max-height: 16px; flex: none; \}/);
   assert.match(built, /<span class="usage" data-usage>—<\/span>/);
 });

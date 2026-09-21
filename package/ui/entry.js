@@ -51,8 +51,9 @@ function mountTitlebar(root, context) {
   root.innerHTML = `
     <style>
       :host { display: block; height: 100%; }
-      button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; height: 100%; min-height: 0; padding: 0 4px; border: 0; border-radius: 4px; background: transparent; color: var(--planeai-text-muted); font-size: 11px; white-space: nowrap; }
-      .kiro-icon { width: 18px; height: 18px; flex: none; }
+      html, body { width: 100%; height: 100%; min-height: 0; overflow: hidden; }
+      button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 100%; height: 100%; min-height: 0; padding: 0 4px; overflow: hidden; border: 0; border-radius: 4px; background: transparent; color: var(--planeai-text-muted); font-size: 11px; line-height: 1; white-space: nowrap; }
+      .kiro-icon { display: block; width: 16px; height: 16px; max-width: 16px; max-height: 16px; flex: none; }
       .usage { font-variant-numeric: tabular-nums; }
       button:hover, button:focus-visible { background: var(--planeai-accent-subtle); color: var(--planeai-text); outline: none; }
       button.warning .usage { color: var(--planeai-warning); }
