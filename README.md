@@ -23,12 +23,15 @@ If Kiro CLI is unavailable, unauthenticated, takes longer than 20 seconds, exits
 ## Development
 
 ```bash
-cargo test
-./scripts/package.sh
+pnpm install --frozen-lockfile
+make test
+make verify-package
 ```
 
-The release archive is written to `dist/`. Its unpacked directory is directly installable in PlaneAI.
+`make verify-package` stages `dist/planeai-plugin-kiro-usage` and verifies that the packaged executable handshake matches the manifest. Install that directory in PlaneAI for local testing.
 
 ## Release
 
-Push a `v*` tag. GitHub Actions builds the macOS-arm64 tarball and attaches it to a GitHub Release.
+The release process matches the PlaneAI GitHub plugin. On each `main` push, GitHub Actions validates the package, uses Conventional Commits to determine a version bump, creates a draft tag and release, builds the tagged package, verifies its handshake, uploads the archive, and publishes the release only after every build passes.
+
+Version 1 builds the `macos-arm64` artifact only. The release archive contains `planeai-plugin.json`, `ui/entry.js`, and the executable under `bin/macos-arm64/`.

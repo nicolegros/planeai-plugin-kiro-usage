@@ -2,7 +2,7 @@
   "schema": "planeai.plugin.v1",
   "id": "kiro-usage",
   "name": "Kiro Usage",
-  "version": "0.1.1",
+  "version": "0.0.0",
   "host_api_version": "planeai.plugin-host.v1",
   "source_kind": "local",
   "backend_entrypoints": {

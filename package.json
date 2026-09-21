@@ -1,0 +1,16 @@
+{
+  "name": "planeai-plugin-kiro-usage",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:manifest": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@auto-it/conventional-commits": "11.3.6",
+    "@auto-it/git-tag": "11.3.6",
+    "@auto-it/upload-assets": "11.3.6",
+    "auto": "11.3.6"
+  },
+  "packageManager": "pnpm@10.28.2"
+}

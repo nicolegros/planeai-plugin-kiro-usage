@@ -1,6 +1,6 @@
 [package]
 name = "planeai-plugin-kiro-usage"
-version = "0.1.1"
+version = "0.0.0"
 edition = "2021"
 description = "PlaneAI local plugin that shows Kiro CLI usage"
 license = "AGPL-3.0-only"
